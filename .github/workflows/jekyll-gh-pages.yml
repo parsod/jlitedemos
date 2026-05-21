@@ -35,8 +35,14 @@ jobs:
         with:
           source: ./
           destination: ./_site
+      - name: Add wheels to site
+        run: |
+          mkdir -p dist/wheels
+          cp wheels/*.whl dist/wheels/         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
 
   # Deployment job
   deploy:
